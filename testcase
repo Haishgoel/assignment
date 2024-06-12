@@ -1,0 +1,27 @@
+
+const testCases = [
+  { input: "", expected: 0 }, 
+  { input: "1", expected: 1 }, 
+  { input: "1,5", expected: 6 }, 
+  { input: "1\n2,3", expected: 6 }, 
+  { input: "//[***]\n1***2***3", expected: 6 }, 
+  { input: "-1,2,-3", expectedError: "Negative numbers not allowed: -1, -3" },
+];
+
+// Function to run tests
+const runTests = (testCases) => {
+  testCases.forEach(({ input, expected, expectedError }) => {
+    try {
+      const result = StringCalculator.add(input);
+      const pass = result === expected ? 'Pass' : 'Fail';
+      console.log(`Input: "${input}" => Output: ${result}, Expected: ${expected}, Test: ${pass}`);
+    } catch (error) {
+      const isErrorMatch = error.message === expectedError;
+      const pass = isErrorMatch ? 'Pass' : 'Fail';
+      console.log(`Input: "${input}" => Error: "${error.message}", Expected Error: "${expectedError}", Test: ${pass}`);
+    }
+  });
+};
+
+// Run the tests
+runTests(testCases);
